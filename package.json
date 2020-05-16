@@ -6,8 +6,8 @@
     "start": "npm run prod",
     "server": "node ./dist-server/bin/www",
     "transpile": "babel ./server --out-dir dist-server",
-    "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server",
+    "dev": "cross-env NODE_ENV=development npm-run-all build server",
+    "prod": "cross-env NODE_ENV=production npm-run-all build server",
     "clean": "rimraf dist-server",
     "build": "npm-run-all clean transpile",
     "watch:dev": "nodemon"
@@ -40,5 +40,8 @@
       "*.test.js",
       "*.spec.js"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
   }
 }
