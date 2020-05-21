@@ -5,6 +5,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import contactRouter from './routes/contact';
 
 var app = express();
 const mongoose = require('mongoose');
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/contact', contactRouter);
 
 mongoose.connect("mongodb+srv://test:Ul8vMutu9CVhmXVU@cluster0-gxfdj.gcp.mongodb.net/test?retryWrites=true&w=majority");
 mongoose.connection.on('error', (err) => {
