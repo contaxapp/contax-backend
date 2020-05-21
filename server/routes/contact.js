@@ -26,4 +26,25 @@ router.post('/', function(req, res, next) {
   res.send("Contact data received");
 });
 
+// GET contact data from hashed recordID
+router.get('/', function(req, res, next) {
+  
+  console.log(req.body);
+  
+  contact.findOne({
+    hashedRecordID: "qqwweerrtt"
+  }, (err, foundContact) => {
+    if (err) {
+      console.log(err);
+      return; 
+    }
+
+    else
+      console.log(foundContact);
+  });
+
+  res.send("Contact data found");
+});
+
+
 export default router;
