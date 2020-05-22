@@ -1,34 +1,43 @@
-import express from 'express';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
-import contactRouter from './routes/contact';
+import indexRouter from "./routes/index";
+import contactRouter from "./routes/contact";
 
-var app = express();
-const mongoose = require('mongoose');
+// Express + Mongoose setup
+const app = express();
+const mongoose = require("mongoose");
 
-app.use(logger('dev'));
+// Middleware setup
+
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/contact', contactRouter);
+// Database connection
 
-mongoose.connect("mongodb+srv://test:Ul8vMutu9CVhmXVU@cluster0-gxfdj.gcp.mongodb.net/test?retryWrites=true&w=majority");
-mongoose.connection.on('error', (err) => {
+const dbUsername = process.env.DEV_DB_USERNAME;
+const dbPassword = process.env.DEV_DB_PASSWORD;
+const connectionString = `mongodb+srv://${dbUsername}:${dbPassword}@dex-dev-jpy4j.mongodb.net/dex-dev?retryWrites=true&w=majority`;
+
+mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology: true });
+mongoose.connection.on("error", (err) => {
   console.error(err);
-  console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
+  console.log("%s MongoDB connection error. Please make sure MongoDB is running.");
   process.exit();
 });
 
-mongoose.connection.once('open', function() {
+mongoose.connection.once("open", function() {
     console.log("We connected");
 });
+
+// Router setup
+
+app.use("/", indexRouter);
+app.use("/contact", contactRouter);
 
 export default app;
