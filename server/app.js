@@ -9,11 +9,6 @@ import contactRouter from "./routes/contact";
 // Express + Mongoose setup
 const app = express();
 
-// Router setup
-
-app.use("/", indexRouter);
-app.use("/contact", contactRouter);
-
 // Middleware setup
 
 app.use(logger("dev"));
@@ -21,5 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
+
+// Router setup
+
+app.use("/", indexRouter);
+app.use("/contact", contactRouter);
 
 export default app;
