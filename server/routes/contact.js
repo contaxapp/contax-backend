@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { Contact } from "../models/Contact";
+import { Contact } from "../models/contact";
 
 
 // POST contact data
@@ -29,7 +29,7 @@ router.post("/", function(req, res, next) {
 // GET contact data from hashed recordID
 router.get("/", function(req, res, next) {
   
-  console.log(req.body);
+  console.log(req.params);
   
   Contact.findOne({
     hashedRecordID: "qqwweerrtt"
