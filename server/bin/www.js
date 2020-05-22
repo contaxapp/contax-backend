@@ -6,6 +6,7 @@
 import app from "../app";
 import debugLib from "debug";
 import http from "http";
+import mongoose from "mongoose";
 const debug = debugLib("dex-backend:server");
 
 /**
@@ -74,6 +75,26 @@ function onListening() {
     : "port " + addr.port;
   debug("Listening on " + bind);
 }
+
+/**
+ * Database Connection
+ */
+
+const dbUsername = process.env.DEV_DB_USERNAME;
+const dbPassword = process.env.DEV_DB_PASSWORD;
+const connectionString = `mongodb+srv://${dbUsername}:${dbPassword}@dex-dev-jpy4j.mongodb.net/dex-dev?retryWrites=true&w=majority`;
+
+mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology: true });
+mongoose.connection.on("error", (err) => {
+  console.error(err);
+  console.log("%s MongoDB connection error. Please make sure MongoDB is running.");
+  process.exit();
+});
+
+mongoose.connection.once("open", function() {
+    console.log("We connected");
+});
+
 
 /**
  * Create HTTP server.

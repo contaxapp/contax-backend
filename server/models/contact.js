@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema({
     recordID: String,
@@ -6,6 +6,4 @@ const contactSchema = new mongoose.Schema({
     hashedContact: String, 
 });
 
-const contact = mongoose.model('contact', contactSchema);
-
-module.exports = contact;
+export const Contact = mongoose.model("Contact", contactSchema);

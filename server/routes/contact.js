@@ -1,15 +1,15 @@
-import express from 'express';
-var router = express.Router();
-const contact = require('../models/contact');
+import express from "express";
+const router = express.Router();
+import { Contact } from "../models/contact";
 
 
 // POST contact data
-router.post('/', function(req, res, next) {
+router.post("/", function(req, res, next) {
   
   console.log(req.body);
   
   // Add DB part here
-  var newContact = new contact({
+  var newContact = new Contact({
     recordID: "12345",
     hashedRecordID: "qqwweerrtt",
     hashedContact: "q1w2e3r4t5"
@@ -27,11 +27,11 @@ router.post('/', function(req, res, next) {
 });
 
 // GET contact data from hashed recordID
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
   
-  console.log(req.body);
+  console.log(req.params);
   
-  contact.findOne({
+  Contact.findOne({
     hashedRecordID: "qqwweerrtt"
   }, (err, foundContact) => {
     if (err) {
