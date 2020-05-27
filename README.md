@@ -10,3 +10,7 @@ This is the Dex Express Backend repository.
 2. Navigate into project: ```cd dex-backend && npm install```
 3. Run Server (Development): ```npm run watch:dev```
 4. Run Server (Production): ```npm start```
+
+## Docker Setup
+
+If you want to try the Docker setup method, just type `docker-compose up` in the folder
