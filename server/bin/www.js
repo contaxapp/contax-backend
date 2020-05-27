@@ -80,9 +80,9 @@ function onListening() {
  * Database Connection
  */
 
-const dbUsername = process.env.DEV_DB_USERNAME;
-const dbPassword = process.env.DEV_DB_PASSWORD;
-const connectionString = `mongodb+srv://${dbUsername}:${dbPassword}@dex-dev-jpy4j.mongodb.net/dex-dev?retryWrites=true&w=majority`;
+// const dbUsername = process.env.DEV_DB_USERNAME;
+// const dbPassword = process.env.DEV_DB_PASSWORD;
+const connectionString = `mongodb://mongo:27017/dex-dev`;
 
 mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => {
