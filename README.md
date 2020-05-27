@@ -13,4 +13,7 @@ This is the Dex Express Backend repository.
 
 ## Docker Setup
 
-If you want to try the Docker setup method, just type `docker-compose up` in the folder
+If you want to try the Docker setup method:
+
+1. Type `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up` for **development** config
+1. Type `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up` for **production** config
