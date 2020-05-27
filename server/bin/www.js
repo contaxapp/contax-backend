@@ -79,10 +79,8 @@ function onListening() {
 /**
  * Database Connection
  */
-
-// const dbUsername = process.env.DEV_DB_USERNAME;
-// const dbPassword = process.env.DEV_DB_PASSWORD;
-const connectionString = `mongodb://mongo:27017/dex-dev`;
+const dbName = process.env.NODE_ENV == 'development' ? 'dex-dev' : 'dex-prod';
+const connectionString = `mongodb://mongo:27017/${dbName}`;
 
 mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => {
@@ -92,7 +90,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 mongoose.connection.once("open", function() {
-    console.log("We connected");
+    console.log(`Connected to ${dbName} database!`);
 });
 
 

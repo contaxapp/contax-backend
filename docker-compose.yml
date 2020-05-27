@@ -1,10 +1,8 @@
 version: '3'
 
 services:
-    node:
+    node-server:
         container_name: dex-backend
-        restart: always
-        build: .
         ports:
             - '3000:3000'
         links:

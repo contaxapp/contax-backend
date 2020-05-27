@@ -11,7 +11,14 @@ const app = express();
 
 // Middleware setup
 
-app.use(logger("dev"));
+switch (process.env.NODE_ENV) {
+    case 'development':
+        app.use(logger("dev"));
+        break;
+    default:
+        break;
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
