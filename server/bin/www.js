@@ -7,7 +7,7 @@ import app from "../app";
 import debugLib from "debug";
 import http from "http";
 import mongoose from "mongoose";
-const debug = debugLib("dex-backend:server");
+const debug = debugLib("contax-backend:server");
 
 /**
  * Normalize a port into a number, string, or false.
@@ -82,7 +82,7 @@ function onListening() {
 
 const dbUsername = process.env.DEV_DB_USERNAME;
 const dbPassword = process.env.DEV_DB_PASSWORD;
-const connectionString = `mongodb+srv://${dbUsername}:${dbPassword}@dex-dev-jpy4j.mongodb.net/dex-dev?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${dbUsername}:${dbPassword}@contax-dev-jpy4j.mongodb.net/contax-dev?retryWrites=true&w=majority`;
 
 mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => {

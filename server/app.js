@@ -3,7 +3,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
-import indexRouter from "./routes/index";
+import incontaxRouter from "./routes/incontax";
 import contactRouter from "./routes/contact";
 
 // Express + Mongoose setup
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // Router setup
 
-app.use("/", indexRouter);
+app.use("/", incontaxRouter);
 app.use("/contact", contactRouter);
 
 export default app;
